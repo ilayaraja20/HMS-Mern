@@ -1,0 +1,129 @@
+.auth-shell {
+  --auth-bg-1: #f4fbf8;
+  --auth-bg-2: #e0eee9;
+  --auth-border: #c8dbd4;
+  --auth-text: #0f2c28;
+  --auth-soft: #4f6561;
+  --auth-primary: #0c6b61;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--auth-text);
+  background:
+    radial-gradient(circle at 12% 16%, #dceee8 0, transparent 38%),
+    radial-gradient(circle at 90% 20%, #e5f2ed 0, transparent 32%),
+    linear-gradient(180deg, var(--auth-bg-1), var(--auth-bg-2));
+  font-family: Manrope, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1.25rem;
+}
+
+.auth-topbar {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(12, 107, 97, 0.18);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+}
+
+.auth-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: #123a36;
+  font-weight: 600;
+  background: #eaf5f2;
+  border: 1px solid #cfe1dc;
+  padding: 0.45rem 0.75rem;
+  border-radius: 9px;
+}
+
+.auth-main {
+  width: 100%;
+  max-width: 1120px;
+  margin: 1.6rem auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  flex: 1;
+}
+
+.auth-hero {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(12, 107, 97, 0.15);
+  border-radius: 16px;
+  padding: 2.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1a5f58;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.auth-hero h1 {
+  margin: 0.55rem 0;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  line-height: 1.14;
+}
+
+.auth-hero p {
+  color: var(--auth-soft);
+  max-width: 470px;
+}
+
+.auth-panel {
+  background: #fff;
+  border: 1px solid var(--auth-border);
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: 0 14px 28px rgba(14, 70, 64, 0.09);
+}
+
+.auth-footer {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.15rem 0 0.4rem;
+  border-top: 1px solid rgba(12, 107, 97, 0.2);
+}
+
+.auth-footer p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.auth-footer span {
+  font-size: 0.92rem;
+  color: var(--auth-soft);
+}
+
+@media (max-width: 900px) {
+  .auth-main {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero {
+    padding: 1.5rem;
+  }
+}
