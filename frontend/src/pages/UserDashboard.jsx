@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import api from "../services/api";
 
 import UserSidebar from "../components/UserSidebar";
@@ -26,7 +26,7 @@ function UserDashboard() {
 
   const userId = localStorage.getItem("userId");
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       setErrorMessage("");
@@ -44,11 +44,11 @@ function UserDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     fetchData();
-  }, [userId]);
+  }, [fetchData]);
 
   return (
     <div style={{ display: "flex" }}>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import api from "../services/api";
 
 import Sidebar from "../components/Sidebar";
@@ -54,10 +54,11 @@ function Complaints() {
     setSuccessMessage("");
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      clearMessages();
+      setErrorMessage("");
+      setSuccessMessage("");
 
       const [complaintRes, studentRes] = await Promise.all([
         api.get("/complaints"),
@@ -71,11 +72,11 @@ function Complaints() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const filteredComplaints = useMemo(() => {
     const q = searchText.trim().toLowerCase();

@@ -51,11 +51,16 @@ const reserveRoom = async (roomNumber) => {
 router.post("/", authenticate, requireRole("admin"), async (req, res) => {
   try {
     const roomNumber = normalizeRoomNumber(req.body.roomNumber);
-
-    const student = new Student({
+    const payload = {
       ...req.body,
       roomNumber,
-    });
+    };
+
+    if (!payload.userId) {
+      delete payload.userId;
+    }
+
+    const student = new Student(payload);
 
     await student.save();
 
@@ -70,6 +75,10 @@ router.post("/", authenticate, requireRole("admin"), async (req, res) => {
 
     return res.json(student);
   } catch (error) {
+    if (error?.code === 11000 && error?.keyPattern?.userId) {
+      return res.status(409).json({ message: "Student account mapping already exists for this user." });
+    }
+
     return res.status(500).json({ message: "Failed to create student" });
   }
 });
@@ -124,13 +133,19 @@ router.put("/:id", authenticate, requireRole("admin"), async (req, res) => {
       }
     }
 
+    const updatePayload = {
+      ...req.body,
+      roomNumber: nextRoom,
+    };
+
+    if (!updatePayload.userId) {
+      delete updatePayload.userId;
+    }
+
     const updated = await Student.findByIdAndUpdate(
       req.params.id,
-      {
-        ...req.body,
-        roomNumber: nextRoom,
-      },
-      { new: true }
+      updatePayload,
+      { returnDocument: "after" }
     );
 
     return res.json(updated);
@@ -185,7 +200,7 @@ router.put("/allocate/:studentId", authenticate, requireRole("admin"), async (re
     const updatedStudent = await Student.findByIdAndUpdate(
       req.params.studentId,
       { roomNumber: nextRoom },
-      { new: true }
+      { returnDocument: "after" }
     );
 
     return res.json({

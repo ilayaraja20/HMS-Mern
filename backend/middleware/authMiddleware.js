@@ -1,6 +1,10 @@
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.JWT_SECRET || "hms_super_secret_change_me";
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET is required. Set JWT_SECRET in backend/.env");
+}
 
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization || "";

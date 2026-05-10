@@ -13,8 +13,8 @@ router.get("/stats", authenticate, requireRole("admin"), async (req, res) => {
     const totalRooms = await Room.countDocuments();
     const occupiedRooms = await Room.countDocuments({ status: "full" });
 
-    const payments = await Payment.find();
-    const feesCollected = payments.reduce((sum, p) => sum + Number(p.amount), 0);
+    const paidPayments = await Payment.find({ status: "paid" }).select("amount");
+    const feesCollected = paidPayments.reduce((sum, p) => sum + Number(p.amount || 0), 0);
 
     const pendingComplaints = await Complaint.countDocuments({ status: "pending" });
 

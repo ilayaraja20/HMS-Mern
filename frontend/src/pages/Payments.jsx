@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import api from "../services/api";
 
 import Sidebar from "../components/Sidebar";
@@ -57,10 +57,11 @@ function Payments() {
     setSuccessMessage("");
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      clearMessages();
+      setErrorMessage("");
+      setSuccessMessage("");
 
       const [paymentRes, studentRes] = await Promise.all([
         api.get("/payments"),
@@ -74,11 +75,11 @@ function Payments() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const filteredPayments = useMemo(() => {
     const q = searchText.trim().toLowerCase();
@@ -246,13 +247,15 @@ function Payments() {
                     <TableCell>Amount</TableCell>
                     <TableCell>Date</TableCell>
                     <TableCell>Status</TableCell>
+                    <TableCell>Method</TableCell>
+                    <TableCell>Transaction</TableCell>
                     <TableCell>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {filteredPayments.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={5} align="center">No payment records found.</TableCell>
+                      <TableCell colSpan={7} align="center">No payment records found.</TableCell>
                     </TableRow>
                   ) : (
                     filteredPayments.map((payment) => (
@@ -267,6 +270,14 @@ function Payments() {
                             color={payment.status === "paid" ? "success" : "warning"}
                             variant="outlined"
                           />
+                        </TableCell>
+                        <TableCell sx={{ textTransform: "capitalize" }}>
+                          {payment.paymentMethod || "-"}
+                        </TableCell>
+                        <TableCell>
+                          <Typography sx={{ fontSize: 13 }}>
+                            {payment.transactionId || "-"}
+                          </Typography>
                         </TableCell>
                         <TableCell>
                           <Stack direction="row" spacing={1}>

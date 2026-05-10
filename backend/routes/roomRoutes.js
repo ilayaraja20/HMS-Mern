@@ -39,7 +39,11 @@ router.put("/:id", authenticate, requireRole("admin"), async (req, res) => {
       return res.status(400).json({ message: "Capacity cannot be less than current occupancy" });
     }
 
-    const room = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const room = await Room.findByIdAndUpdate(req.params.id, req.body, { returnDocument: "after" });
+
+    room.status = Number(room.occupancy) >= Number(room.capacity) ? "full" : "available";
+    await room.save();
+
     return res.json(room);
   } catch (error) {
     return res.status(500).json({ message: "Failed to update room" });

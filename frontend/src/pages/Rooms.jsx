@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import api from "../services/api";
 
 import Sidebar from "../components/Sidebar";
@@ -49,10 +49,11 @@ function Rooms() {
     setSuccessMessage("");
   };
 
-  const fetchRooms = async () => {
+  const fetchRooms = useCallback(async () => {
     try {
       setLoading(true);
-      clearMessages();
+      setErrorMessage("");
+      setSuccessMessage("");
 
       const res = await api.get("/rooms");
       setRooms(res.data || []);
@@ -61,11 +62,11 @@ function Rooms() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchRooms();
-  }, []);
+  }, [fetchRooms]);
 
   const filteredRooms = useMemo(() => {
     const q = searchText.trim().toLowerCase();

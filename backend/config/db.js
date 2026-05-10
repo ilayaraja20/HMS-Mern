@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/hms");
+    if (!process.env.MONGO_URI) {
+      throw new Error("MONGO_URI is required. Set MONGO_URI in backend/.env");
+    }
+
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log("MongoDB Connected");
   } catch (error) {

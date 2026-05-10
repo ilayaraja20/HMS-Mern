@@ -3,7 +3,7 @@ import api from "../services/api";
 import { Alert, Button, CircularProgress, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthStore";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");

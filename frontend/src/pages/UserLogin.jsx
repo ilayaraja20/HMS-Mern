@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthStore";
 
 function UserLogin() {
   const [tab, setTab] = useState(0);

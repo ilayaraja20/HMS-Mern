@@ -221,11 +221,22 @@ function Dashboard() {
             <Grid container spacing={2.2} sx={{ mt: 0.6 }} alignItems="stretch">
               {statCards.map((card) => (
                 <Grid item xs={12} sm={6} lg={3} key={card.label} sx={{ display: "flex" }}>
-                  <Paper sx={{ p: 2.2, borderRadius: 3, border: "1px solid #e3e9f1", width: "100%", display: "flex" }}>
+                  <Paper
+                    sx={{
+                      p: 2.2,
+                      borderRadius: 3,
+                      border: "1px solid #e3e9f1",
+                      width: "100%",
+                      minHeight: 126,
+                      display: "flex",
+                    }}
+                  >
                     <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: "100%" }}>
                       <Box>
                         <Typography sx={{ fontSize: 13, color: "#66758a", fontWeight: 600 }}>{card.label}</Typography>
-                        <Typography sx={{ mt: 0.4, fontSize: 29, fontWeight: 800, lineHeight: 1.2 }}>{card.value}</Typography>
+                        <Typography sx={{ mt: 0.4, fontSize: { xs: 24, md: 29 }, fontWeight: 800, lineHeight: 1.2 }}>
+                          {card.value}
+                        </Typography>
                       </Box>
                       <Avatar sx={{ background: `${card.tone}1a`, color: card.tone }}>{card.icon}</Avatar>
                     </Stack>
@@ -234,7 +245,18 @@ function Dashboard() {
               ))}
 
               <Grid item xs={12} lg={7} sx={{ display: "flex" }}>
-                <Paper sx={{ p: 2.5, borderRadius: 3, border: "1px solid #e3e9f1", height: "100%" }}>
+                <Paper
+                  sx={{
+                    p: 2.5,
+                    borderRadius: 3,
+                    border: "1px solid #e3e9f1",
+                    height: "100%",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 428,
+                  }}
+                >
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Operational Insights</Typography>
                   <Typography sx={{ color: "#5e6d7e", fontSize: 14, mb: 2 }}>
                     Current occupancy and service-status indicators.
@@ -290,7 +312,18 @@ function Dashboard() {
               </Grid>
 
               <Grid item xs={12} lg={5} sx={{ display: "flex" }}>
-                <Paper sx={{ p: 2.5, borderRadius: 3, border: "1px solid #e3e9f1", height: "100%" }}>
+                <Paper
+                  sx={{
+                    p: 2.5,
+                    borderRadius: 3,
+                    border: "1px solid #e3e9f1",
+                    height: "100%",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 428,
+                  }}
+                >
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Quick Actions</Typography>
                   <Typography sx={{ color: "#5e6d7e", fontSize: 14, mb: 2 }}>
                     Navigate directly to operational modules.
@@ -334,7 +367,7 @@ function Dashboard() {
                     </Button>
                   </Stack>
 
-                  <Paper sx={{ mt: 2, p: 1.5, borderRadius: 2.5, background: "#f7fafd", border: "1px dashed #c7d6ea" }}>
+                  <Paper sx={{ mt: "auto", p: 1.5, borderRadius: 2.5, background: "#f7fafd", border: "1px dashed #c7d6ea" }}>
                     <Stack direction="row" spacing={1} alignItems="center">
                       <ReportProblemRoundedIcon sx={{ color: "#7e5a00" }} />
                       <Typography sx={{ fontWeight: 700 }}>Action Priority</Typography>
@@ -347,7 +380,16 @@ function Dashboard() {
               </Grid>
 
               <Grid item xs={12} md={6} sx={{ display: "flex" }}>
-                <Paper sx={{ p: 2.2, borderRadius: 3, border: "1px solid #e3e9f1", height: "100%" }}>
+                <Paper
+                  sx={{
+                    p: 2.2,
+                    borderRadius: 3,
+                    border: "1px solid #e3e9f1",
+                    height: "100%",
+                    width: "100%",
+                    minHeight: 390,
+                  }}
+                >
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Recent Complaints</Typography>
                   <Typography sx={{ color: "#5e6d7e", fontSize: 13.5, mb: 1.4 }}>
                     Most recent complaint records requiring attention.
@@ -368,7 +410,7 @@ function Dashboard() {
                                 {item.issue}
                               </Typography>
                             </Box>
-                            <Stack direction="row" spacing={1} alignItems="center" sx={{ flexShrink: 0 }}>
+                            <Stack direction="row" spacing={1} alignItems="center" sx={{ flexShrink: 0, minWidth: 150, justifyContent: "flex-end" }}>
                               <Chip
                                 label={item.status}
                                 size="small"
@@ -395,7 +437,16 @@ function Dashboard() {
               </Grid>
 
               <Grid item xs={12} md={6} sx={{ display: "flex" }}>
-                <Paper sx={{ p: 2.2, borderRadius: 3, border: "1px solid #e3e9f1", height: "100%" }}>
+                <Paper
+                  sx={{
+                    p: 2.2,
+                    borderRadius: 3,
+                    border: "1px solid #e3e9f1",
+                    height: "100%",
+                    width: "100%",
+                    minHeight: 390,
+                  }}
+                >
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Recent Payments</Typography>
                   <Typography sx={{ color: "#5e6d7e", fontSize: 13.5, mb: 1.4 }}>
                     Latest payment entries and collection progress.
@@ -416,7 +467,7 @@ function Dashboard() {
                                 {new Date(item.paymentDate).toLocaleDateString()} | {formatCurrency(item.amount)}
                               </Typography>
                             </Box>
-                            <Stack direction="row" spacing={1} alignItems="center" sx={{ flexShrink: 0 }}>
+                            <Stack direction="row" spacing={1} alignItems="center" sx={{ flexShrink: 0, minWidth: 150, justifyContent: "flex-end" }}>
                               <Chip
                                 label={item.status}
                                 size="small"

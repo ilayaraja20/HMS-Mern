@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import api from "../services/api";
 
 import Sidebar from "../components/Sidebar";
@@ -58,10 +58,11 @@ function Students() {
     setSuccessMessage("");
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      clearMessages();
+      setErrorMessage("");
+      setSuccessMessage("");
 
       const [studentRes, roomRes] = await Promise.all([
         api.get("/students"),
@@ -75,11 +76,11 @@ function Students() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const departmentOptions = useMemo(() => {
     const values = new Set((students || []).map((s) => s.department).filter(Boolean));

@@ -112,7 +112,7 @@ router.get("/user/:userId", authenticate, async (req, res) => {
 
 router.put("/:id", authenticate, requireRole("admin"), async (req, res) => {
   try {
-    const complaint = await Complaint.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const complaint = await Complaint.findByIdAndUpdate(req.params.id, req.body, { returnDocument: "after" });
     return res.json(complaint);
   } catch (error) {
     return res.status(500).json({ message: "Failed to update complaint" });
