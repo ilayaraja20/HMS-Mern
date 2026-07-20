@@ -1,4 +1,12 @@
 # 🏠 Hostel Management System (MERN Stack)
+# 🏠 Hostel Management System (MERN Stack)
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-Backend-000000?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Authentication-000000?logo=jsonwebtokens&logoColor=white)
+![Razorpay](https://img.shields.io/badge/Razorpay-Payment-0C2451?logo=razorpay&logoColor=white)
 
 ## 📌 Project Overview
 
