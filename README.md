@@ -125,17 +125,26 @@ RAZORPAY_SECRET=
 
 ## 📷 Screenshots
 
-Add screenshots of:
+### Home Page
+![Home](Home.png)
 
-- Login Page
-- Admin Dashboard
-- Student Dashboard
-- Room Allocation
-- Payment Page
+### Login Page
+![Login](Login.png)
 
-*(Screenshots will be added soon.)*
+### Admin Login
+![Admin Login](Adminlogin.png)
 
----
+### Registration Page
+![Register](Register.png)
+
+### Admin Dashboard
+![Admin Dashboard](Admin%20Dashboard.png)
+
+### Student Dashboard
+![Student Dashboard](Student%20Dashboard.png)
+
+### Room Allocation
+![Room Allocation](Roomallocation.png)
 
 ## 📖 API Features
 
