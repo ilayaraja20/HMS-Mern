@@ -10,7 +10,7 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 process.env.JWT_SECRET = process.env.JWT_SECRET || "test_jwt_secret_value";
 process.env.RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || "rzp_test_sample";
 process.env.RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || "test_razorpay_secret";
-process.env.FRONTEND_URLS = process.env.FRONTEND_URLS || "http://localhost:5173";
+process.env.FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 const app = require("../app");
 const paymentRoutes = require("../routes/paymentRoutes");

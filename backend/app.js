@@ -13,7 +13,7 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URLS || "")
+const allowedOrigins = (process.env.FRONTEND_URL || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
